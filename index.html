@@ -104,6 +104,187 @@
       color: #555;
       font-size: 0.85rem;
     }
+
+    /* ── Quiz Section ── */
+    .quiz-section {
+      max-width: 720px;
+      margin: 0 auto 60px;
+      padding: 0 24px;
+    }
+
+    .quiz-section h2 {
+      text-align: center;
+      font-size: 2rem;
+      color: #ffd700;
+      margin-bottom: 8px;
+      text-shadow: 0 0 16px rgba(255, 200, 0, 0.6);
+    }
+
+    .quiz-section .subtitle {
+      text-align: center;
+      color: #aaa;
+      margin-bottom: 36px;
+      font-size: 1rem;
+    }
+
+    .question {
+      margin-bottom: 28px;
+    }
+
+    .question p {
+      font-size: 1rem;
+      color: #fff;
+      margin-bottom: 12px;
+      font-weight: 600;
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .options label {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: #1a1a2e;
+      border: 1px solid #2a2a4a;
+      border-radius: 8px;
+      padding: 12px 16px;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+      font-size: 0.95rem;
+      color: #ccc;
+    }
+
+    .options label:hover {
+      border-color: #ff6a00;
+      background: #1f1f3a;
+      color: #fff;
+    }
+
+    .options input[type="radio"] {
+      accent-color: #ff6a00;
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+    }
+
+    .options input[type="radio"]:checked + span {
+      color: #ffd700;
+    }
+
+    .options label:has(input:checked) {
+      border-color: #ff6a00;
+      background: #221a0e;
+    }
+
+    #submit-btn {
+      display: block;
+      width: 100%;
+      margin-top: 12px;
+      padding: 16px;
+      background: linear-gradient(135deg, #ff6a00, #ee0979);
+      color: #fff;
+      font-size: 1.1rem;
+      font-weight: bold;
+      letter-spacing: 1px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+
+    #submit-btn:hover { opacity: 0.88; }
+    #submit-btn:disabled { opacity: 0.45; cursor: not-allowed; }
+
+    /* ── Result Card ── */
+    #result {
+      display: none;
+      max-width: 480px;
+      margin: 0 auto 60px;
+      background: #1a1a2e;
+      border: 2px solid #ff6a00;
+      border-radius: 16px;
+      overflow: hidden;
+      text-align: center;
+      box-shadow: 0 0 40px rgba(255, 106, 0, 0.35);
+    }
+
+    #result img {
+      width: 100%;
+      max-height: 280px;
+      object-fit: contain;
+      background: #12122a;
+      padding: 24px;
+    }
+
+    #result .result-body {
+      padding: 28px 24px;
+    }
+
+    #result h3 {
+      font-size: 1.4rem;
+      color: #aaa;
+      margin-bottom: 4px;
+    }
+
+    #result h2 {
+      font-size: 2.2rem;
+      color: #ffd700;
+      text-shadow: 0 0 16px rgba(255, 200, 0, 0.7);
+      margin-bottom: 16px;
+    }
+
+    #result .reason {
+      color: #ccc;
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin-bottom: 16px;
+    }
+
+    #result .power {
+      font-size: 0.9rem;
+      color: #ff6a00;
+      font-weight: bold;
+    }
+
+    #retake-btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 28px;
+      background: transparent;
+      border: 1px solid #ff6a00;
+      color: #ff6a00;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    #retake-btn:hover { background: #ff6a00; color: #fff; }
+
+    #loading {
+      display: none;
+      text-align: center;
+      padding: 40px;
+      color: #ffd700;
+      font-size: 1.1rem;
+    }
+
+    .spinner {
+      display: inline-block;
+      width: 36px;
+      height: 36px;
+      border: 4px solid #2a2a4a;
+      border-top-color: #ff6a00;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin-bottom: 12px;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
   </style>
 </head>
 <body>
@@ -207,9 +388,172 @@
 
   </div>
 
+  <!-- ── Quiz ── -->
+  <section class="quiz-section" id="quiz-section">
+    <h2>What DBZ Character Are You?</h2>
+    <p class="subtitle">Answer 5 questions and Claude AI will reveal your true warrior spirit.</p>
+
+    <form id="quiz-form">
+
+      <div class="question">
+        <p>1. In a fight, your instinct is to…</p>
+        <div class="options">
+          <label><input type="radio" name="q1" value="rush in head-first and fight with pure heart"><span>Rush in head-first — I fight with pure heart</span></label>
+          <label><input type="radio" name="q1" value="calculate every move and dominate through pride"><span>Calculate every move and dominate through pride</span></label>
+          <label><input type="radio" name="q1" value="study the enemy and find a strategic counter"><span>Study the enemy and find a clever counter</span></label>
+          <label><input type="radio" name="q1" value="unleash overwhelming power and crush everything"><span>Unleash overwhelming power and crush everything</span></label>
+        </div>
+      </div>
+
+      <div class="question">
+        <p>2. What drives you most?</p>
+        <div class="options">
+          <label><input type="radio" name="q2" value="protecting the people I care about"><span>Protecting the people I care about</span></label>
+          <label><input type="radio" name="q2" value="proving I am the strongest and most elite"><span>Proving I am the strongest and most elite</span></label>
+          <label><input type="radio" name="q2" value="seeking knowledge and becoming perfect"><span>Seeking knowledge and achieving perfection</span></label>
+          <label><input type="radio" name="q2" value="having fun and doing whatever I want"><span>Having fun and doing whatever I want</span></label>
+        </div>
+      </div>
+
+      <div class="question">
+        <p>3. How do you react to losing?</p>
+        <div class="options">
+          <label><input type="radio" name="q3" value="train even harder until I surpass my limits"><span>Train even harder until I break my limits</span></label>
+          <label><input type="radio" name="q3" value="burn with rage and swear revenge"><span>Burn with rage and swear revenge</span></label>
+          <label><input type="radio" name="q3" value="reflect quietly and find the flaw in my strategy"><span>Reflect quietly and find the flaw in my plan</span></label>
+          <label><input type="radio" name="q3" value="I never truly lose — I always come back stronger"><span>I never truly lose — I always come back</span></label>
+        </div>
+      </div>
+
+      <div class="question">
+        <p>4. People who know you would describe you as…</p>
+        <div class="options">
+          <label><input type="radio" name="q4" value="warm, naive, and impossibly pure-hearted"><span>Warm, naive, and impossibly pure-hearted</span></label>
+          <label><input type="radio" name="q4" value="proud, intense, and fiercely competitive"><span>Proud, intense, and fiercely competitive</span></label>
+          <label><input type="radio" name="q4" value="calm, wise, and slightly scary to cross"><span>Calm, wise, and slightly scary to cross</span></label>
+          <label><input type="radio" name="q4" value="cold, cunning, and obsessed with power"><span>Cold, cunning, and obsessed with power</span></label>
+        </div>
+      </div>
+
+      <div class="question">
+        <p>5. Your ideal source of power is…</p>
+        <div class="options">
+          <label><input type="radio" name="q5" value="bonds with friends and sheer willpower"><span>Bonds with friends and sheer willpower</span></label>
+          <label><input type="radio" name="q5" value="Saiyan heritage and relentless self-improvement"><span>Saiyan heritage and relentless self-improvement</span></label>
+          <label><input type="radio" name="q5" value="absorbing the best traits from others"><span>Absorbing the best traits from everyone</span></label>
+          <label><input type="radio" name="q5" value="limitless chaos and pure destructive energy"><span>Limitless chaos and pure destructive energy</span></label>
+        </div>
+      </div>
+
+      <button type="submit" id="submit-btn">Find My Character &#9889;</button>
+    </form>
+  </section>
+
+  <!-- Loading spinner -->
+  <div id="loading">
+    <div class="spinner"></div>
+    <p>Claude is scanning your power level…</p>
+  </div>
+
+  <!-- Result -->
+  <div id="result">
+    <img id="result-img" src="" alt="" />
+    <div class="result-body">
+      <h3>You are…</h3>
+      <h2 id="result-name"></h2>
+      <p class="reason" id="result-reason"></p>
+      <p class="power" id="result-power"></p>
+      <button id="retake-btn">Retake Quiz</button>
+    </div>
+  </div>
+
   <footer>
     &copy; 2026 Dragon Ball Z Fan Page &mdash; All characters belong to Akira Toriyama &amp; Toei Animation
   </footer>
 
+  <script>
+    const CHARACTER_IMAGES = {
+      'Goku':         'https://dragonball-api.com/characters/goku_normal.webp',
+      'Vegeta':       'https://dragonball-api.com/characters/vegeta_normal.webp',
+      'Piccolo':      'https://dragonball-api.com/characters/picolo_normal.webp',
+      'Gohan':        'https://dragonball-api.com/characters/gohan.webp',
+      'Future Trunks':'https://dragonball-api.com/characters/Trunks_Buu_Artwork.webp',
+      'Krillin':      'https://dragonball-api.com/characters/Krilin_Universo7.webp',
+      'Frieza':       'https://dragonball-api.com/characters/Freezer.webp',
+      'Cell':         'https://dragonball-api.com/characters/celula.webp',
+      'Majin Buu':    'https://dragonball-api.com/characters/BuuGordo_Universo7.webp'
+    };
+
+    const form = document.getElementById('quiz-form');
+    const submitBtn = document.getElementById('submit-btn');
+    const loading = document.getElementById('loading');
+    const result = document.getElementById('result');
+    const quizSection = document.getElementById('quiz-section');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const data = new FormData(form);
+      const answers = {};
+      const labels = [
+        'Fighting instinct',
+        'Primary motivation',
+        'Reaction to losing',
+        'How others see you',
+        'Source of power'
+      ];
+
+      let allAnswered = true;
+      ['q1','q2','q3','q4','q5'].forEach((q, i) => {
+        const val = data.get(q);
+        if (!val) { allAnswered = false; return; }
+        answers[labels[i]] = val;
+      });
+
+      if (!allAnswered) {
+        alert('Please answer all 5 questions!');
+        return;
+      }
+
+      submitBtn.disabled = true;
+      quizSection.style.display = 'none';
+      loading.style.display = 'block';
+      result.style.display = 'none';
+
+      try {
+        const res = await fetch('/api/quiz', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ answers })
+        });
+
+        if (!res.ok) throw new Error('Server error');
+        const data = await res.json();
+
+        document.getElementById('result-name').textContent = data.character;
+        document.getElementById('result-reason').textContent = data.reason;
+        document.getElementById('result-power').textContent = 'Power Level: ' + data.powerLevel;
+
+        const imgSrc = CHARACTER_IMAGES[data.character] || CHARACTER_IMAGES['Goku'];
+        document.getElementById('result-img').src = imgSrc;
+        document.getElementById('result-img').alt = data.character;
+
+        loading.style.display = 'none';
+        result.style.display = 'block';
+      } catch (err) {
+        loading.style.display = 'none';
+        quizSection.style.display = 'block';
+        submitBtn.disabled = false;
+        alert('Something went wrong. Please try again!');
+      }
+    });
+
+    document.getElementById('retake-btn').addEventListener('click', () => {
+      form.reset();
+      result.style.display = 'none';
+      quizSection.style.display = 'block';
+      submitBtn.disabled = false;
+    });
+  </script>
 </body>
 </html>
