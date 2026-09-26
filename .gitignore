@@ -1,0 +1,38 @@
+# Private keys & credentials
+*.pem
+*.key
+*.p12
+*.pfx
+*.cer
+*.crt
+id_rsa
+id_rsa*
+id_ed25519
+id_ed25519*
+*.ppk
+
+# Environment & secrets files
+.env
+.env.*
+.env.local
+.env.production
+.env.development
+secrets.*
+*secret*
+*credentials*
+*_credentials.*
+config/secrets.*
+
+# API keys & tokens
+*.token
+*api_key*
+*apikey*
+
+# Cloud provider credentials
+.aws/
+.gcloud/
+gcloud-service-key.json
+service-account*.json
+
+# macOS
+.DS_Store
