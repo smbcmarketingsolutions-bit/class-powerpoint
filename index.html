@@ -285,6 +285,22 @@
     }
 
     @keyframes spin { to { transform: rotate(360deg); } }
+
+    .custom-input {
+      display: none;
+      width: 100%;
+      margin-top: 8px;
+      padding: 12px 16px;
+      background: #12122a;
+      border: 1px solid #ff6a00;
+      border-radius: 8px;
+      color: #fff;
+      font-size: 0.95rem;
+      outline: none;
+    }
+
+    .custom-input::placeholder { color: #666; }
+    .custom-input:focus { border-color: #ffd700; }
   </style>
 </head>
 <body>
@@ -402,6 +418,8 @@
           <label><input type="radio" name="q1" value="calculate every move and dominate through pride"><span>Calculate every move and dominate through pride</span></label>
           <label><input type="radio" name="q1" value="study the enemy and find a strategic counter"><span>Study the enemy and find a clever counter</span></label>
           <label><input type="radio" name="q1" value="unleash overwhelming power and crush everything"><span>Unleash overwhelming power and crush everything</span></label>
+          <label><input type="radio" name="q1" value="__custom__"><span>Other — type your own</span></label>
+          <input type="text" class="custom-input" id="custom-q1" placeholder="Describe your fighting instinct…" />
         </div>
       </div>
 
@@ -412,6 +430,8 @@
           <label><input type="radio" name="q2" value="proving I am the strongest and most elite"><span>Proving I am the strongest and most elite</span></label>
           <label><input type="radio" name="q2" value="seeking knowledge and becoming perfect"><span>Seeking knowledge and achieving perfection</span></label>
           <label><input type="radio" name="q2" value="having fun and doing whatever I want"><span>Having fun and doing whatever I want</span></label>
+          <label><input type="radio" name="q2" value="__custom__"><span>Other — type your own</span></label>
+          <input type="text" class="custom-input" id="custom-q2" placeholder="What drives you most…" />
         </div>
       </div>
 
@@ -422,6 +442,8 @@
           <label><input type="radio" name="q3" value="burn with rage and swear revenge"><span>Burn with rage and swear revenge</span></label>
           <label><input type="radio" name="q3" value="reflect quietly and find the flaw in my strategy"><span>Reflect quietly and find the flaw in my plan</span></label>
           <label><input type="radio" name="q3" value="I never truly lose — I always come back stronger"><span>I never truly lose — I always come back</span></label>
+          <label><input type="radio" name="q3" value="__custom__"><span>Other — type your own</span></label>
+          <input type="text" class="custom-input" id="custom-q3" placeholder="How do you react to losing…" />
         </div>
       </div>
 
@@ -432,6 +454,8 @@
           <label><input type="radio" name="q4" value="proud, intense, and fiercely competitive"><span>Proud, intense, and fiercely competitive</span></label>
           <label><input type="radio" name="q4" value="calm, wise, and slightly scary to cross"><span>Calm, wise, and slightly scary to cross</span></label>
           <label><input type="radio" name="q4" value="cold, cunning, and obsessed with power"><span>Cold, cunning, and obsessed with power</span></label>
+          <label><input type="radio" name="q4" value="__custom__"><span>Other — type your own</span></label>
+          <input type="text" class="custom-input" id="custom-q4" placeholder="How would others describe you…" />
         </div>
       </div>
 
@@ -442,6 +466,8 @@
           <label><input type="radio" name="q5" value="Saiyan heritage and relentless self-improvement"><span>Saiyan heritage and relentless self-improvement</span></label>
           <label><input type="radio" name="q5" value="absorbing the best traits from others"><span>Absorbing the best traits from everyone</span></label>
           <label><input type="radio" name="q5" value="limitless chaos and pure destructive energy"><span>Limitless chaos and pure destructive energy</span></label>
+          <label><input type="radio" name="q5" value="__custom__"><span>Other — type your own</span></label>
+          <input type="text" class="custom-input" id="custom-q5" placeholder="Your ideal source of power…" />
         </div>
       </div>
 
@@ -490,6 +516,16 @@
     const result = document.getElementById('result');
     const quizSection = document.getElementById('quiz-section');
 
+    form.addEventListener('change', (e) => {
+      if (e.target.type !== 'radio') return;
+      const questionDiv = e.target.closest('.question');
+      const customInput = questionDiv.querySelector('.custom-input');
+      if (!customInput) return;
+      const isCustom = e.target.value === '__custom__';
+      customInput.style.display = isCustom ? 'block' : 'none';
+      if (!isCustom) customInput.value = '';
+    });
+
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
 
@@ -505,8 +541,13 @@
 
       let allAnswered = true;
       ['q1','q2','q3','q4','q5'].forEach((q, i) => {
-        const val = data.get(q);
+        let val = data.get(q);
         if (!val) { allAnswered = false; return; }
+        if (val === '__custom__') {
+          const customText = document.getElementById('custom-' + q)?.value?.trim();
+          if (!customText) { allAnswered = false; return; }
+          val = customText;
+        }
         answers[labels[i]] = val;
       });
 
