@@ -48,8 +48,7 @@
     .card {
       background: #1a1a2e;
       border-radius: 12px;
-      padding: 28px 20px;
-      text-align: center;
+      overflow: hidden;
       border: 1px solid #2a2a4a;
       transition: transform 0.2s, box-shadow 0.2s;
     }
@@ -59,9 +58,17 @@
       box-shadow: 0 8px 30px rgba(255, 106, 0, 0.4);
     }
 
-    .card .emoji {
-      font-size: 3.5rem;
-      margin-bottom: 12px;
+    .card img {
+      width: 100%;
+      height: 260px;
+      object-fit: contain;
+      background: #12122a;
+      padding: 16px;
+    }
+
+    .card-body {
+      padding: 20px;
+      text-align: center;
     }
 
     .card h2 {
@@ -109,75 +116,93 @@
   <div class="grid">
 
     <div class="card">
-      <div class="emoji">⚡</div>
-      <h2>Goku</h2>
-      <div class="race">Saiyan</div>
-      <p>The most powerful hero of Earth. Born Kakarot, raised as a human, and destined to be the greatest warrior in the universe.</p>
-      <div class="power">Power Level: Over 9,000</div>
+      <img src="https://dragonball-api.com/characters/goku_normal.webp" alt="Goku" />
+      <div class="card-body">
+        <h2>Goku</h2>
+        <div class="race">Saiyan</div>
+        <p>The most powerful hero of Earth. Born Kakarot, raised as a human, and destined to be the greatest warrior in the universe.</p>
+        <div class="power">Power Level: Over 9,000</div>
+      </div>
     </div>
 
     <div class="card">
-      <div class="emoji">🔥</div>
-      <h2>Vegeta</h2>
-      <div class="race">Saiyan</div>
-      <p>The proud Prince of all Saiyans. Rival to Goku and one of the most elite warriors in the universe.</p>
-      <div class="power">Power Level: Elite Class</div>
+      <img src="https://dragonball-api.com/characters/vegeta_normal.webp" alt="Vegeta" />
+      <div class="card-body">
+        <h2>Vegeta</h2>
+        <div class="race">Saiyan</div>
+        <p>The proud Prince of all Saiyans. Rival to Goku and one of the most elite warriors in the universe.</p>
+        <div class="power">Power Level: Elite Class</div>
+      </div>
     </div>
 
     <div class="card">
-      <div class="emoji">💚</div>
-      <h2>Piccolo</h2>
-      <div class="race">Namekian</div>
-      <p>A Namekian warrior and mentor to Gohan. Once an enemy of Goku, he became one of Earth's greatest defenders.</p>
-      <div class="power">Power Level: Namekian God</div>
+      <img src="https://dragonball-api.com/characters/picolo_normal.webp" alt="Piccolo" />
+      <div class="card-body">
+        <h2>Piccolo</h2>
+        <div class="race">Namekian</div>
+        <p>A Namekian warrior and mentor to Gohan. Once an enemy of Goku, he became one of Earth's greatest defenders.</p>
+        <div class="power">Power Level: Namekian God</div>
+      </div>
     </div>
 
     <div class="card">
-      <div class="emoji">🌟</div>
-      <h2>Gohan</h2>
-      <div class="race">Half-Saiyan</div>
-      <p>Son of Goku with incredible hidden potential. Became the first Super Saiyan 2 to defeat Cell.</p>
-      <div class="power">Power Level: Mystic Ultimate</div>
+      <img src="https://dragonball-api.com/characters/gohan.webp" alt="Gohan" />
+      <div class="card-body">
+        <h2>Gohan</h2>
+        <div class="race">Half-Saiyan</div>
+        <p>Son of Goku with incredible hidden potential. Became the first Super Saiyan 2 to defeat Cell.</p>
+        <div class="power">Power Level: Mystic Ultimate</div>
+      </div>
     </div>
 
     <div class="card">
-      <div class="emoji">💙</div>
-      <h2>Future Trunks</h2>
-      <div class="race">Half-Saiyan</div>
-      <p>A warrior from a dark future timeline. Traveled back in time to warn the Z Fighters of the Androids.</p>
-      <div class="power">Power Level: Super Saiyan</div>
+      <img src="https://dragonball-api.com/characters/Trunks_Buu_Artwork.webp" alt="Future Trunks" />
+      <div class="card-body">
+        <h2>Future Trunks</h2>
+        <div class="race">Half-Saiyan</div>
+        <p>A warrior from a dark future timeline. Traveled back in time to warn the Z Fighters of the Androids.</p>
+        <div class="power">Power Level: Super Saiyan</div>
+      </div>
     </div>
 
     <div class="card">
-      <div class="emoji">🟡</div>
-      <h2>Krillin</h2>
-      <div class="race">Human</div>
-      <p>Goku's best friend and the strongest human on Earth. Master of the Destructo Disc and Solar Flare techniques.</p>
-      <div class="power">Power Level: Strongest Human</div>
+      <img src="https://dragonball-api.com/characters/Krilin_Universo7.webp" alt="Krillin" />
+      <div class="card-body">
+        <h2>Krillin</h2>
+        <div class="race">Human</div>
+        <p>Goku's best friend and the strongest human on Earth. Master of the Destructo Disc and Solar Flare techniques.</p>
+        <div class="power">Power Level: Strongest Human</div>
+      </div>
     </div>
 
     <div class="card">
-      <div class="emoji">👾</div>
-      <h2>Frieza</h2>
-      <div class="race">Frieza Race</div>
-      <p>The tyrannical emperor of Universe 7 who destroyed Planet Vegeta. One of the most feared villains in existence.</p>
-      <div class="power">Power Level: 120,000,000</div>
+      <img src="https://dragonball-api.com/characters/Freezer.webp" alt="Frieza" />
+      <div class="card-body">
+        <h2>Frieza</h2>
+        <div class="race">Frieza Race</div>
+        <p>The tyrannical emperor of Universe 7 who destroyed Planet Vegeta. One of the most feared villains in existence.</p>
+        <div class="power">Power Level: 120,000,000</div>
+      </div>
     </div>
 
     <div class="card">
-      <div class="emoji">🧬</div>
-      <h2>Cell</h2>
-      <div class="race">Bio-Android</div>
-      <p>A bio-engineered android created from the DNA of the greatest fighters. Achieved his perfect form to unleash terror.</p>
-      <div class="power">Power Level: Perfect Form</div>
+      <img src="https://dragonball-api.com/characters/celula.webp" alt="Cell" />
+      <div class="card-body">
+        <h2>Cell</h2>
+        <div class="race">Bio-Android</div>
+        <p>A bio-engineered android created from the DNA of the greatest fighters. Achieved his perfect form to unleash terror.</p>
+        <div class="power">Power Level: Perfect Form</div>
+      </div>
     </div>
 
     <div class="card">
-      <div class="emoji">👹</div>
-      <h2>Majin Buu</h2>
-      <div class="race">Majin</div>
-      <p>An ancient magical being of pure destruction. Exists in multiple forms ranging from innocent to pure evil.</p>
-      <div class="power">Power Level: Immeasurable</div>
+      <img src="https://dragonball-api.com/characters/BuuGordo_Universo7.webp" alt="Majin Buu" />
+      <div class="card-body">
+        <h2>Majin Buu</h2>
+        <div class="race">Majin</div>
+        <p>An ancient magical being of pure destruction. Exists in multiple forms ranging from innocent to pure evil.</p>
+        <div class="power">Power Level: Immeasurable</div>
+      </div>
     </div>
 
   </div>
